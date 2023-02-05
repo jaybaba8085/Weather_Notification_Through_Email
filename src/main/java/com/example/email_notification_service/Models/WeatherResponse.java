@@ -2,11 +2,14 @@ package com.example.email_notification_service.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+
+@Data
 public class WeatherResponse {
 
     @JsonProperty("name")
@@ -17,16 +20,6 @@ public class WeatherResponse {
 
     public String getCityName() {
         return cityName;
-    }
-
-    private List<MainWeather> weather;
-
-    public List<MainWeather> getWeather() {
-        return weather;
-    }
-
-    public void setWeather(List<MainWeather> weather) {
-        this.weather = weather;
     }
 
     public void setCityName(String cityName) {
@@ -40,7 +33,6 @@ public class WeatherResponse {
     public void setMainWeather(MainWeather mainWeather) {
         this.mainWeather = mainWeather;
     }
-
     public class MainWeather {
 
         @JsonProperty("temp")
@@ -49,8 +41,30 @@ public class WeatherResponse {
         @JsonProperty("humidity")
         private int humidity;
 
+        @JsonProperty("weatherDescription")
+        private String weatherDescription;
+
+        public String getWeatherDescription() {
+            return weatherDescription;
+        }
+
+        public void setWeatherDescription(String weatherDescription) {
+            this.weatherDescription = weatherDescription;
+        }
+
+        @JsonProperty("windSpeed")
+        private int windSpeed;
+
+        public int getWindSpeed() {
+            return windSpeed;
+        }
+
+        public void setWindSpeed(int windSpeed) {
+            this.windSpeed = windSpeed;
+        }
+
         public double getTemperature() {
-            return temperature;
+            return temperature- 274.15;
         }
 
         public void setTemperature(double temperature) {

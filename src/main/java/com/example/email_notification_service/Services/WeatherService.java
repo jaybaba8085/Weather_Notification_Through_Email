@@ -8,14 +8,22 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class WeatherService {
 
-    private final String API_KEY = "YOUR_API_KEY";
+
+
+
+
+
+    private static final String API_KEY = "1cd484c55ed6a26693398bcae22720c1";
+    private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather?";
 
     @Autowired
     private RestTemplate restTemplate;
 
     public WeatherResponse getWeatherByCity(String city)
     {
-        String url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + API_KEY;
-        return restTemplate.getForObject(url, WeatherResponse.class);
+        String url = BASE_URL + "q=" + city + "&appid=" + API_KEY;
+        WeatherResponse weatherResponse = restTemplate.getForObject(url, WeatherResponse.class);
+        return weatherResponse;
     }
+
 }
