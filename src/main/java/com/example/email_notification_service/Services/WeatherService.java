@@ -7,12 +7,6 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WeatherService {
-
-
-
-
-
-
     private static final String API_KEY = "1cd484c55ed6a26693398bcae22720c1";
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather?";
 

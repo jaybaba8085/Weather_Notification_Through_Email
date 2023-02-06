@@ -35,16 +35,13 @@ public class EmailService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public void sendEmail()
+    public void sendEmail(User user)
     {
-        List<User> users = userRepository.findAll();
 
-              for (User user : users)
-              {
                  String city = user.getCity();
                  WeatherResponse weather = weatherService.getWeatherByCity(city);
                  sendEmail(user.getEmail(), weather);
-              }
+
     }
     private void sendEmail(String email, WeatherResponse weather) {
         // Use the JavaMailSender to send an email with the weather information
@@ -93,8 +90,8 @@ public class EmailService {
                     "    <div class=\"container\">\n" +
                     "      <div class=\"header\">Weather Report for {{cityName}}</div>\n" +
                     "      <div class=\"weather-details\">\n" +
-                    "        <p>Temperature: {{temperature}}°C</p>\n" +
-                    "        <p>Humidity: {{humidity}}%</p>\n" +
+                    "        <p>Temperature: {{temperature}}°C</p>\n" + "  " +
+                    "        <p> Humidity: {{humidity}}%</p>\n" +
                     "      </div>\n" +
                     "    </div>\n" +
                     "  </body>\n" +
@@ -102,8 +99,7 @@ public class EmailService {
 
             htmlTemplate = htmlTemplate.replace("{{cityName}}",weather.getCityName())
                     .replace("{{temperature}}", String.valueOf(weather.getMainWeather().getTemperature()))
-                    .replace("{{humidity}}",String.valueOf(weather.getMainWeather().getHumidity()))
-                    .replace("{{windSpeed}}", String.valueOf(weather.getMainWeather().getWindSpeed()));
+                    .replace("{{humidity}}",String.valueOf(weather.getMainWeather().getHumidity()));
 
                 helper.setText(htmlTemplate, true);
 

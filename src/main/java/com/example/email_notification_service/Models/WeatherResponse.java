@@ -63,8 +63,8 @@ public class WeatherResponse {
             this.windSpeed = windSpeed;
         }
 
-        public double getTemperature() {
-            return temperature- 274.15;
+        public String getTemperature() {
+            return String.format("%.0f",(temperature- 274.15));
         }
 
         public void setTemperature(double temperature) {

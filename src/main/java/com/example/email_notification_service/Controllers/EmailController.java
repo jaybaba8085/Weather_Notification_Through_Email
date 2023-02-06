@@ -23,9 +23,8 @@ public class EmailController {
     private Scheduler scheduler;
 
     @GetMapping(value = "/sendmail")
-    public String sendmail()
+    public void sendmail()
     {
           scheduler.notifyUsers();
-          return "Success";
     }
 }

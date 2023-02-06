@@ -1,5 +1,6 @@
 package com.example.email_notification_service.Models;
 
+import com.example.email_notification_service.Repositories.UserRepository;
 import com.example.email_notification_service.Services.EmailService;
 import com.example.email_notification_service.Services.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,20 @@ public class Scheduler {
 
     @Autowired
     private WeatherService weatherService;
+    @Autowired
+    private UserRepository userRepository;
 
+    //@Scheduled(cron = "0 */2 * * * *")
     @Scheduled(fixedRate = 3600000)
     public void notifyUsers()
     {
-            emailService.sendEmail();
-    }
+        List<User> users = userRepository.findAll();
 
+        for (User user : users)
+        {
+            emailService.sendEmail(user);
+        }
+    }
 }
 
 
