@@ -28,7 +28,7 @@ public class Scheduler {
     private UserRepository userRepository;
 
     //@Scheduled(cron = "0 */2 * * * *")
-    @Scheduled(fixedRate = 3600000)
+    @Scheduled(cron = "0 20 23 23 3 *")//(fixedRate = 3600000)
     public void notifyUsers()
     {
         List<User> users = userRepository.findAll();

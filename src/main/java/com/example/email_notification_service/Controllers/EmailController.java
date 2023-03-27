@@ -17,9 +17,6 @@ import java.util.List;
 public class EmailController {
 
     @Autowired
-    private EmailService emailService;
-
-    @Autowired
     private Scheduler scheduler;
 
     @GetMapping(value = "/sendmail")

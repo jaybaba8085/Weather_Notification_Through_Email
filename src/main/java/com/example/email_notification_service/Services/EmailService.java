@@ -45,6 +45,7 @@ public class EmailService {
     }
     private void sendEmail(String email, WeatherResponse weather) {
         // Use the JavaMailSender to send an email with the weather information
+
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
